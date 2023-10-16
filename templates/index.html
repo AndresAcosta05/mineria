@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+{% block titulo %}Principal{% endblock%}
+{% block body %}
+<section class="concepto centrar_caja centrar_texto">
+    <h1>¿Que es mineria de datos?</h1>
+    <p>Se conoce como el proceso en el que mediante algoritmos o tecnicas de mineria podemos extraer
+        informacion de paginas web, su objetivo es encontrar los patrones de tendencia mediante el analisis
+        y recopilacion de datos.
+    </p>
+</section>
+<section class="ofrecemos centrar_caja centrar_texto">
+    <h2>Ofrecemos</h2>
+    <div class="caracteristicas">
+        <div class="caracteristica centrar_caja">
+            <div class="caracteristica_logo">
+                <img src="{{ url_for('static', filename='img/analisis.png') }}" alt="">
+            </div>
+            <div class="caracteristica_texto centrar_texto">
+                <h3>Analisis</h3>
+                <p>Aqui puedes encontrar resultados de analisis a paginas web y sus tendencias.</p>
+            </div>
+        </div>
+        <div class="caracteristica centrar_caja">
+            <div class="caracteristica_logo">
+                <img src="{{ url_for('static', filename='img/dashboard.png') }}" alt="">
+            </div>
+            <div class="caracteristica_texto centrar_texto">
+                <h3>Dashboard</h3>
+                <p>Tus analisis podran ser visualizados mediante graficas y representaciones comodas.</p>
+            </div>
+        </div>
+        <div class="caracteristica centrar_caja">
+            <div class="caracteristica_logo">
+                <img src="{{ url_for('static', filename='img/extraccion.png') }}" alt="">
+            </div>
+            <div class="caracteristica_texto centrar_texto">
+                <h3>Extraccion</h3>
+                <p>Puedes realizar extraccion de informacion acerca de articulos de tu agrado en la aplicacion de mercado libre.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
