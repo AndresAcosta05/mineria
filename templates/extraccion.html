@@ -2,4 +2,20 @@
 
 {% block titulo %}Extraccion{% endblock %}
 {% block body%}
+<h1 class="titulo_extraccion">Extraccion de Reddit</h1>
+<div class="extraccion centrar_caja centrar_texto">
+    {% for data in extraido %}
+    <article class="publicado">
+        <p><span>Id:</span> {{data.ID}} </p>
+        <p><span>Autor:</span> {{data.Autor}}</p>
+        <p><span>Url:</span> {{data.URL}}</p>
+        <p><span>Comentarios:</span> {{data.Comentarios}}</p>
+        <p><span>Puntuacion:</span> {{data.Puntuacion}}</p>
+        <p><span>Creado:</span> {{data.Creado}}</p>
+        <p><span>Original:</span> {{data.Original}}</p>
+        <p><span>Traducido:</span> {{data.Traducido}}</p>
+    </article>
+    {% endfor %}
+
+</div>
 {% endblock %}

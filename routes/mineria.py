@@ -1,8 +1,9 @@
 import praw
 import csv
 from googletrans import Translator
+import json
 
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 mineria = Blueprint('mineria', __name__)
 
@@ -42,6 +43,7 @@ def extraccionReddit():
 
     # Lista para almacenar todos los resultados
     all_results = []
+    json_results = []
 
     # Realiza múltiples solicitudes para obtener más resultados
     for submission in subreddit.search(search_query, limit=total_results):
@@ -68,6 +70,18 @@ def extraccionReddit():
             # Traduce el título al español
             titulo_es = translator.translate(submission.title, src='auto', dest='es').text
             # Reemplaza los valores 0 en las columnas "Puntuación" y "Cantidad de Comentarios" por el promedio
+            result_data = {
+                "ID": submission.id,
+                "Autor": str(submission.author),
+                "URL": submission.url,
+                "Puntuacion": submission.score,
+                "Comentarios": submission.num_comments,
+                "Creado": submission.created_utc,
+                "Original": submission.title,
+                "Traducido": titulo_es
+            }
+            json_results.append(result_data)
+
             if submission.score == 0:
                 submission.score = calculate_average("score", all_results)
             if submission.num_comments == 0:
@@ -76,5 +90,4 @@ def extraccionReddit():
             row = [submission.id, submission.author, submission.url, submission.score, submission.num_comments, submission.created_utc, submission.title, titulo_es]
             writer.writerow(row)
 
-    return f'Se han exportado exitosamente {len(all_results)} resultados a {csv_file}.'
-
+    return json_results

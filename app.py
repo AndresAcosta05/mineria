@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-from routes.mineria import mineria
+from routes.mineria import mineria, extraccionReddit
 
 SECRET_KEY = 'mykeyflask'
 app = Flask(__name__)
@@ -22,7 +22,8 @@ def dashboard():
 
 @app.route('/extraccion')
 def extraccion():
-    return render_template('extraccion.html')
+    extraido = extraccionReddit()
+    return render_template('extraccion.html', extraido=extraido)
 
 if __name__ == '__main__':
     app.run(debug=True)
